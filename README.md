@@ -50,6 +50,21 @@ number of absorbed / re-emitted students per iteration.
 
 Run `demo.m` for a complete example. No toolbox is required.
 
+
+## Reproducing the experiments of the paper
+
+| Folder | Content |
+|---|---|
+| `QBHM_SPBO.m`, `demo.m` | the algorithm and a minimal example |
+| `benchmarks_CECfn/` | the 15 CEC-inspired test functions CECfn1–CECfn15 (D = 30) |
+| `dispatch/cl_dispatch.m` | all dispatch test systems (3-, 5- and 26-unit ED; 6- and 10-unit CEED) with their data, slack-unit handling and penalty |
+| `experiments/` | `cl_job.m` (one run under an exact budget of function evaluations, counted by a wrapper around the objective), `run_experiments.m` (all experiments), SPBO (`cl_SPBO.m`), the single-jump variant used in the ablation study (`cl_origQBHM.m`) and the eight competitors (`bl_*.m`, `EO.m`) with the parameter settings of Table 3 |
+| `results/` | raw results of every run: `results_CECfn.csv`, `results_CEC22.csv`, `results_DISP.csv` (best value of each run; for dispatch also the full dispatch, fuel cost, emission, losses, power-balance mismatch and limit violation) |
+
+Algorithm labels in the result files: `QBHM` = QBHM-SPBO, `QBHM_orig` = single-jump variant QBHM-SPBO-SJ, `QBHM_noAbs` / `QBHM_noHawk` = without absorption / without re-emission. Run *r* uses the random seed 2026 + *r* for every algorithm.
+
+The competitor implementations follow the original publications cited in the paper; `EO.m` is adapted from the public code of Faramarzi et al. (2020) with the memory-saving step removed, as described in the paper. The official CEC 2022 code (`cec22_test_func` and its `input_data`) is not redistributed here; it is available from https://github.com/P-N-Suganthan/2022-SO-BO.
+
 ## Citation
 
 If you use this code, please cite the paper above.
